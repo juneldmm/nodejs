@@ -7,7 +7,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {  //创建服务器
     res.statusCode = 200;
 res.setHeader('Content-Type', 'text/plain');//文本格式
-res.end('Hello World\n');
+res.end('Hello World\n');//结束响应
 });
 
 server.listen(port, hostname, () => {
