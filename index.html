@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>beautiful girl</h1>
+<ul id ='messages'>
+
+</ul>
+<!--用户提交内容-->
+<form>
+    <input type="text" autocomplete="off" id="message">
+    <button>Send</button>
+</form>
+<!--客户端使用的socket.io-->
+<script src="//cdn.bootcss.com/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    var socket = io();
+
+//    拿到用户输入的内容，并传给chat.message这个频道
+    $('form').submit(function () {
+        socket.emit('chat.message',$('#message').val());
+        $('#message').val('');
+        return false;
+
+    })
+
+    //监听频道
+    socket.on('chat.message',function(message){
+        $('#messages').append($('<li>').text(message));
+    })
+</script>
+
+</body>
+</html>
